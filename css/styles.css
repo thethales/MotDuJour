@@ -1,0 +1,11 @@
+#word_envelope{
+
+    font-size: xx-large;
+    padding: 15px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border: 1px #CCC dashed;
+    border-radius: 15px;
+    margin:15px
+
+}
