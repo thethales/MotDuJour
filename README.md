@@ -1,6 +1,10 @@
 # MotDuJour
 
+
+
 _Uma nova palavra em francês aleatória diária_
+
+![Version](https://img.shields.io/badge/version-pre--alpha-red)
 
 A aplicação é totalmente desenvolvida em _Javascript_ rodando diretamente no seu navegador através do GitHub Pages
 
