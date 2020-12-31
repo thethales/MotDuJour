@@ -276,28 +276,29 @@ Parse.Simple.Creole = function(options) {
                       '([^\\|}~\\n]*((}(?!})|~.)[^\\|}~\\n]*)*)' +
                       '(?:\\|([a-z]+)=([a-zA-Z0-9%]+))?' + '}}',
             build: function(node, r, options) {
-                var img = document.createElement('img');
-                img.src = r[1];
-                img.alt = r[2].replace(/~(.)/g, '$1');
+                //var img = document.createElement('img');
+                //img.src = r[1];
+                //img.alt = r[2].replace(/~(.)/g, '$1');
                 /* Creole extension, I don't know what mechanism is in
                  * Creole 1.0 to specify title text */
-                img.title = img.alt;
+                //img.title = img.alt;
                 /* r: ["{{a|b fdsa ds~||width=100px}}",
                  *     "a", "b fdsa ds~|", "~|", "~|", "width", "100px"] */
-                if (r[5] !== undefined && r[6] !== undefined) {
-                    if (r[5] === 'width') {
-                        img.style.width = r[6];
-                    } else if (r[5] == 'height') {
-                        img.style.height = r[6];
-                    } else {
-                        img[r[5]] = r[6];
-                    }
-                }
+                //if (r[5] !== undefined && r[6] !== undefined) {
+                   // if (r[5] === 'width') {
+                      //  img.style.width = r[6];
+                    //} else if (r[5] == 'height') {
+                      //  img.style.height = r[6];
+                    //} else {
+                     //   img[r[5]] = r[6];
+                   // }
+               // }
                 //node.appendChild(img);
-            } },
+            } 
+        },
 
         namedUri: { regex: '\\[\\[(' + rx.uri + ')\\|(' + rx.linkText + ')\\]\\]',
-            build: function(node, r, options) {
+            build: 'dummy' /*function(node, r, options) {
                 var link = document.createElement('a');
                 link.href = r[1];
                 if (options && options.isPlainUri) {
@@ -306,20 +307,22 @@ Parse.Simple.Creole = function(options) {
                 else {
                     this.apply(link, r[2], options);
                 }
-                //node.appendChild(link);
-            } },
+                node.appendChild(link);
+            } */
+        },
 
         namedLink: { regex: '\\[\\[(' + rx.link + ')\\|(' + rx.linkText + ')\\]\\]',
             build: function(node, r, options) {
-                var link = document.createElement('a');
+                //var link = document.createElement('a');
 
-                link.href = options && options.linkFormat ?
-                    formatLink(r[1].replace(/~(.)/g, '$1'), options.linkFormat) :
-                    r[1].replace(/~(.)/g, '$1');
-                this.apply(link, r[2], options);
+                //link.href = options && options.linkFormat ?
+                    //formatLink(r[1].replace(/~(.)/g, '$1'), options.linkFormat) :
+                    //r[1].replace(/~(.)/g, '$1');
+                //this.apply(link, r[2], options);
 
                 //node.appendChild(link);
-            } },
+            } 
+        },
 
         unnamedUri: { regex: '\\[\\[(' + rx.uri + ')\\]\\]',
             build: 'dummy' },
@@ -379,7 +382,28 @@ Parse.Simple.Creole = function(options) {
     for (var i = 1; i <= 6; i++) {
         g['h' + i] = { tag: 'h' + i, capture: 2,
             regex: '(^|\\n)[ \\t]*={' + i + '}[ \\t]' +
-                   '([^~]*?(~(.|(?=\\n)|$))*)[ \\t]*=*\\s*(\\n|$)'
+                   '([^~]*?(~(.|(?=\\n)|$))*)[ \\t]*=*\\s*(\\n|$)' 
+            /*,build: function(node, r, options) {
+                var children = node.children
+                for (var i = 0; i < children.length; i++) {
+                    var child = children[i];
+                    console.log(child.innerHTML)
+                    //if(child.innerHTML !== undefined){
+                        if(child.innerHTML.indexOf('{{') > -1){
+                            //let a = child.innerHTML.replace('{','').split('|');
+                            //let b = a[0].split('{');
+                            //child.innerHTML = b[0] + '<b>' + b[1] + '</b>';
+                            child.innerHTML = '';
+                            
+                            node.children[i] = child;
+                            
+                            //console.log(child)
+                        }
+                    //}
+                }
+                
+            
+            }*/
         };
     }
 
