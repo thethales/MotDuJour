@@ -34,3 +34,10 @@ Todo o conteúdo exibido é de uso livre, tendo sido criado por usuários da Wik
 # Dependências
 
 - [jscreole](https://github.com/scottt/jscreole) - Uma biblioteca simples de transcrição da linguagem de marcação [Creole](http://www.wikicreole.org/) em HTML
+
+# Roadmap
+
+- Upgrade Visual, melhoria da apresentação visual
+- Link minimalista de acesso a tradutores externos (Google tradutor)
+- Suporte para visualização do conteúdo equivalente em Português
+- Suporte para visualização do conteúdo equivalente outras linguas
