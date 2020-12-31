@@ -19,12 +19,18 @@ function printWord(word){
 }
 
 function printWordDefinition(def){
+    //Temporarily remove Wiki Especial markers until
+    //I can figure out what to do with them
+    var reg_remove_marker = /\{\{(.*?)\}\}/gm;
+
     creole = new Parse.Simple.Creole({
         forIE: document.all
     });
     
     var div = document.getElementById('word_def');
+    def = def.replace(reg_remove_marker,'')
     creole.parse(div, def);
+    
 }
 
 
