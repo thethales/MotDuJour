@@ -13,6 +13,18 @@ var lookup = function(obj, key) {
     return obj;
 }
 
+
+function openGoogleTranslate(text){
+    var url = new URL('https://translate.google.com/');
+        url.searchParams.append('sl','fr');
+        url.searchParams.append('tl','pt');
+        url.searchParams.append('text', text);
+        url.searchParams.append('op', 'translate');
+    
+    window.location.href = url;
+}
+
+
 function printWord(word){
     $('#word_envelope').text(word);
     setWordDefinition('word_def',word);

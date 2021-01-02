@@ -54,12 +54,20 @@
         <div id="word_envelope">
 
         </div>
+        
         <div id="word_def">
           
         </div>
         
 
 
+      </div>
+      <div class="col-lg-12 text-center" >
+        <button type="button" class="btn btn-light" id="btn_google_translate" >
+          <i class="material-icons valign-m">g_translate</i>
+          <span class="lm-1 valign-m">Ver no Google Tradutor</span>
+        </button>
+       
       </div>
     </div>
   </div>
@@ -72,10 +80,17 @@
   
   <script>
     $( document ).ready(function() {
-      setRandomWord()
+      setRandomWord();
+
+      $('#btn_google_translate').click(function(){
+        openGoogleTranslate($('#word_envelope').text() + '\n' + $('#word_def').text());
+      });
+
+
     });
 
 
+    
   </script>
 
 </body>
