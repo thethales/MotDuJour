@@ -34,6 +34,7 @@ Todo o conteúdo exibido é de uso livre, tendo sido criado por usuários da Wik
 # Dependências
 
 - [jscreole](https://github.com/scottt/jscreole) - Uma biblioteca simples de transcrição da linguagem de marcação [Creole](http://www.wikicreole.org/) em HTML
+- [material.io](https://material.io/) - Material icons. Delightful, beautifully crafted symbols for common actions and items.
 
 # Roadmap
 
