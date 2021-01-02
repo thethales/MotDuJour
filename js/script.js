@@ -48,10 +48,16 @@ function printWordDefinition(def){
 
 function setRandomWord(){
     //const url = 'http://fr.wiktionary.org/w/api.php?action=query&list=random&rnlimit=1&format=json';
-
-    const url = 'https://fr.wiktionary.org/w/api.php?action=query&format=json&list=random&titles=Special:RandomInCategory/French_lemmas=0&rnlimit=1'
+    //const url = 'https://fr.wiktionary.org/w/api.php?action=query&format=json&list=random&titles=Special:RandomInCategory/French_lemmas=0&rnlimit=1'
+    
+    var url = new URL('https://fr.wiktionary.org/w/api.php');
+        url.searchParams.append('action','query');
+        url.searchParams.append('format','json');
+        url.searchParams.append('list', 'random');
+        url.searchParams.append('titles', 'Special:RandomInCategory/French_lemmas=0');
+        url.searchParams.append('rnlimit', '1');
+        
     $.ajax({
-        url: url,
         url: url,
         dataType: 'jsonp', 
         success:function(data){
@@ -70,21 +76,23 @@ function setRandomWord(){
 
 
 function setWordDefinition(word){
-    
-    const url = 'https://fr.wiktionary.org/w/api.php?action=query&titles='+ word +'&prop=revisions&rvprop=content&format=json'
+    //const url = 'https://fr.wiktionary.org/w/api.php?action=query&titles='+ word +'&prop=revisions&rvprop=content&format=json'
+    var url = new URL('https://fr.wiktionary.org/w/api.php');
+        url.searchParams.append('action','query');
+        url.searchParams.append('format','json');
+        url.searchParams.append('prop', 'revisions');
+        url.searchParams.append('titles', word);
+        url.searchParams.append('rvprop', 'content');
 
     $.ajax({
         url: url,
         dataType: 'jsonp', 
         success:function(data){
-            
             let pages = data['query']['pages']
             let a = lookup(data,'query.pages')
             for(key in a) {
                 if( a[key].hasOwnProperty('revisions')){
-
-
-                    console.log(a[key]['revisions'][0]['*'])
+                    //console.log(a[key]['revisions'][0]['*'])
                     var markup = a[key]['revisions'][0]['*'];
 
                     if(markup.indexOf('{{langue|fr}}') > -1 ){
@@ -92,11 +100,8 @@ function setWordDefinition(word){
                     }else{
                         setRandomWord()
                     }
-
                 }
-                
               }
-
         },
         error:function(){
             printWordDefinition('Definição Indisponível 😔');
